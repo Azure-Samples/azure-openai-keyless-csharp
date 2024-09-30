@@ -1,57 +1,140 @@
-# Project Name
+<!-- prettier-ignore -->
+<div align="center">
 
-(short, 1-3 sentenced, description of the project)
+<img src="./docs/images/keyless.png" alt="" align="center" height="64" />
 
-## Features
+# Azure OpenAI keyless deployment
 
-This project framework provides the following features:
-
-* Feature 1
-* Feature 2
-* ...
-
-## Getting Started
-
-### Prerequisites
-
-(ideally very short, if any)
-
-- OS
-- Library version
-- ...
-
-### Installation
-
-(ideally very short)
-
-- npm install [package name]
-- mvn install
-- ...
-
-### Quickstart
-(Add steps to get up and running quickly)
-
-1. git clone [repository clone url]
-2. cd [repository name]
-3. ...
+[![Open project in GitHub Codespaces](https://img.shields.io/badge/Codespaces-Open-blue?style=flat-square&logo=github)](https://codespaces.new/Azure-Samples/azure-openai-keyless-csharp?hide_repo_select=true&ref=main&quickstart=true)
+[![Open in Dev Containers](https://img.shields.io/static/v1?style=for-the-badge&label=Dev%20Containers&message=Open&color=blue&logo=visualstudiocode)](https://vscode.dev/redirect?url=vscode://ms-vscode-remote.remote-containers/cloneInVolume?url=https://github.com/azure-samples/azure-openai-keyless-csharp)
 
 
-## Demo
+:star: If you like this sample, star it on GitHub — it helps a lot!
 
-A demo app is included to show how to use the project.
+[Overview](#overview) • [Get started](#getting-started) • [Run the sample](#run-the-sample) • [Resources](#resources) • [Troubleshooting](#troubleshooting)
 
-To run the demo, follow these steps:
+</div>
 
-(Add steps to start up the demo)
+## Overview
 
-1.
-2.
-3.
+This sample shows how to to provision an [Azure OpenAI](https://learn.microsoft.com/azure/ai-services/openai/overview) account with an [RBAC role](https://learn.microsoft.com/azure/role-based-access-control/built-in-roles) permission for your user account to access, so that you can use the OpenAI API SDKs with [keyless (Entra) authentication](https://learn.microsoft.com/entra/identity/managed-identities-azure-resources/overview).
+
+## Getting started
+
+There are multiple ways to get started with this project.
+
+The quickest way is to use [GitHub Codespaces](#use-github-codespaces) that provides a preconfigured environment for you. Alternatively, you can [set up your local environment](#use-your-local-environment) following the instructions below.
+
+### Use your local environment
+
+You need to install following tools to work on your local machine:
+
+* [.NET 8](https://dotnet.microsoft.com/downloads/)
+* [Git](https://git-scm.com/downloads)
+* [Azure Developer CLI (azd)](https://aka.ms/install-azd)
+* [VS Code](https://code.visualstudio.com/Download) or [Visual Studio](https://visualstudio.microsoft.com/downloads/)
+    * If using VS Code, install the [C# Dev Kit](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csdevkit)
+
+Then you can get the project code:
+
+1. [**Fork**](https://github.com/Azure-Samples/azure-openai-keyless-csharp/fork) the project to create your own copy of this repository.
+2. On your forked repository, select the **Code** button, then the **Local** tab, and copy the URL of your forked repository.
+
+<div align="center">
+  <img src="./docs/images/clone-url.png" alt="Screenshot showing how to copy the repository URL" width="400px" />
+</div>
+3. Open a terminal and run this command to clone the repo: <code> git clone &lt;your-repo-url&gt; </code>
+
+### Use GitHub Codespaces
+
+You can run this project directly in your browser by using GitHub Codespaces, which will open a web-based VS Code:
+
+[![Open in GitHub Codespaces](https://img.shields.io/static/v1?style=for-the-badge&label=GitHub+Codespaces&message=Open&color=blue&logo=github)](https://codespaces.new/Azure-Samples/azure-openai-keyless-csharp?hide_repo_select=true&ref&quickstart=true)
+
+### Use a VSCode dev container
+
+A similar option to Codespaces is VS Code Dev Containers, that will open the project in your local VS Code instance using the [Dev Containers extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers).
+
+You will also need to have [Docker](https://www.docker.com/products/docker-desktop) installed on your machine to run the container.
+
+[![Open in Dev Containers](https://img.shields.io/static/v1?style=for-the-badge&label=Dev%20Containers&message=Open&color=blue&logo=visualstudiocode)](https://vscode.dev/redirect?url=vscode://ms-vscode-remote.remote-containers/cloneInVolume?url=https://github.com/Azure-Samples/azure-openai-keyless-csharp)
+
+## Run the sample
+
+### Azure prerequisites
+
+- **Azure account**. If you're new to Azure, [get an Azure account for free](https://azure.microsoft.com/free) to get free Azure credits to get started. If you're a student, you can also get free credits with [Azure for Students](https://aka.ms/azureforstudents).
+- **Azure subscription with access enabled for the Azure OpenAI service**. You can request access with [this form](https://aka.ms/oaiapply).
+- **Azure account permissions**:
+  - Your Azure account must have `Microsoft.Authorization/roleAssignments/write` permissions, such as [Role Based Access Control Administrator](https://learn.microsoft.com/azure/role-based-access-control/built-in-roles#role-based-access-control-administrator-preview), [User Access Administrator](https://learn.microsoft.com/azure/role-based-access-control/built-in-roles#user-access-administrator), or [Owner](https://learn.microsoft.com/azure/role-based-access-control/built-in-roles#owner). If you don't have subscription-level permissions, you must be granted [RBAC](https://learn.microsoft.com/azure/role-based-access-control/built-in-roles#role-based-access-control-administrator-preview) for an existing resource group and [deploy to that existing group](docs/deploy_existing.md#resource-group).
+  - Your Azure account also needs `Microsoft.Resources/deployments/write` permissions on the subscription level.
+
+### Cost estimation
+
+Pricing varies per region and usage, so it isn't possible to predict exact costs for your usage.
+However, you can use the [Azure pricing calculator](https://azure.com/e/43c784eb696e40fb9875c809da1c82cd) for the resources below to get an estimate.
+
+- Azure OpenAI: Standard tier, GPT model. Pricing per 1K tokens used, and at least 1K tokens are used per question. [Pricing](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/)
+
+### Provision Azure OpenAI resources
+
+1. Open a terminal and navigate to the root of the project.
+2. Authenticate with Azure by running `azd auth login`.
+3. Run `azd provision` to provision the Azure resources.
+   - You will be prompted to select a location for your OpenAI resource. If you're unsure of which location to choose, select `eastus2`. See [OpenAI model availability table](https://learn.microsoft.com/azure/ai-services/openai/concepts/models#standard-deployment-model-availability) for more information.
+
+The deployment process will take a few minutes. Once it's done, a `.env` file will be created in the root folder with the environment variables needed to run the application. .NET User Secrets will be configured for the sample using these environment variables, so you can run it right away.
+
+### Run the sample
+
+First make sure you have provisioned the Azure OpenAI resources, then run the following command from the root of this repo (or run the project in Visual Studio or VSCode).
+
+1. Run `dotnet run` to install the dependencies.
+
+This will use the [OpenAI SDK](https://github.com/openai/openai-dotnet) to make a request to the OpenAI API and print the response to the console.
+
+### Clean up
+
+To clean up all the Azure resources created by this sample:
+
+1. Run `azd down --purge`
+2. When asked if you are sure you want to continue, enter `y`
+
+The resource group and all the resources will be deleted.
 
 ## Resources
 
-(Any additional resources or related projects)
+Here are some resources to learn more about Azure OpenAI and related technologies:
 
-- Link to supporting information
-- Link to similar sample
-- ...
+- [Generative AI For Beginners](https://github.com/microsoft/generative-ai-for-beginners)
+- [Generative AI with .NET, for Beginners](https://www.youtube.com/watch?v=vISLS8aY0RU&list=PLdo4fOcmZ0oW_k4_eDTPWDLUVWz7A9y0M)
+- [Azure OpenAI Service](https://learn.microsoft.com/azure/ai-services/openai/overview)
+- [Chat + Enterprise data with Azure OpenAI and Azure AI Search](https://github.com/Azure-Samples/azure-search-openai-csharp)
+
+You can also find [more Azure AI samples here](https://github.com/Azure-Samples/azureai-samples).
+
+## Troubleshooting
+
+If you have any issue when running or deploying this sample, please check the [troubleshooting guide](./docs/troubleshooting.md). If you can't find a solution to your problem, please [open an issue](https://github.com/Azure-Samples/azure-openai-keyless-csharp/issues) in this repository.
+
+## Contributing
+
+This project welcomes contributions and suggestions. Most contributions require you to agree to a
+Contributor License Agreement (CLA) declaring that you have the right to, and actually do, grant us
+the rights to use your contribution. For details, visit https://cla.opensource.microsoft.com.
+
+When you submit a pull request, a CLA bot will automatically determine whether you need to provide
+a CLA and decorate the PR appropriately (e.g., status check, comment). Simply follow the instructions
+provided by the bot. You will only need to do this once across all repos using our CLA.
+
+This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/).
+For more information see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or
+contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.
+
+## Trademarks
+
+This project may contain trademarks or logos for projects, products, or services. Authorized use of Microsoft
+trademarks or logos is subject to and must follow
+[Microsoft's Trademark & Brand Guidelines](https://www.microsoft.com/en-us/legal/intellectualproperty/trademarks/usage/general).
+Use of Microsoft trademarks or logos in modified versions of this project must not cause confusion or imply Microsoft sponsorship.
+Any use of third-party trademarks or logos are subject to those third-party's policies.

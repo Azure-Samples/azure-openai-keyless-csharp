@@ -1,0 +1,19 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/Azure/azure-dev/main/schemas/v1.0/azure.yaml.json
+
+name: azure-openai-keyless-csharp
+metadata:
+  template: azure-openai-keyless-csharp
+
+hooks:
+  # Create .NET User Secrets for all generated environment variables
+  postprovision:
+    windows:
+      shell: pwsh
+      run: ./infra/post-script/store-env-vars.ps1
+      interactive: true
+      continueOnError: true
+    posix:
+      shell: sh
+      run: ./infra/post-script/store-env-vars.sh
+      interactive: true
+      continueOnError: true

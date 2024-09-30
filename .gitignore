@@ -396,3 +396,9 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+
+# AZD
+.azure
+
+# macOS hidden folders
+.DS_Store
