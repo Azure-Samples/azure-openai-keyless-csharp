@@ -1,3 +1,5 @@
+#!/bin/sh
+
 function set_dotnet_user_secrets() {
     local path="$1"
     local lines="$2"
