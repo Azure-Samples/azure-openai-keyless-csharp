@@ -1,3 +1,5 @@
+#!/bin/bash
+
 function set_dotnet_user_secrets() {
     local path="$1"
     local lines="$2"
@@ -13,7 +15,6 @@ function set_dotnet_user_secrets() {
         value="${value%\"}"
         value="${value#\"}"
         name="${name//__/:}"
-
         if [[ -n "$value" ]]; then
             dotnet user-secrets set "$name" "$value" >/dev/null
         fi
