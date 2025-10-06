@@ -94,18 +94,20 @@ module openAi 'br/public:avm/res/cognitive-services/account:0.7.1' = {
           version: chatModelVersion
         }
         sku: {
-          name: 'Standard'
+          name: 'GlobalStandard'
           capacity: chatDeploymentCapacity
         }
       }
     ]
-    roleAssignments: isContinuousDeployment ? [] : [
-      {
-        principalId: principalId
-        roleDefinitionIdOrName: 'Cognitive Services OpenAI User'
-        principalType: 'User'
-      }
-    ]
+    roleAssignments: isContinuousDeployment
+      ? []
+      : [
+          {
+            principalId: principalId
+            roleDefinitionIdOrName: 'Cognitive Services OpenAI User'
+            principalType: 'User'
+          }
+        ]
   }
 }
 

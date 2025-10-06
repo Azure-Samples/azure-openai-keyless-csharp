@@ -15,13 +15,13 @@
       "value": "${AZURE_PRINCIPAL_ID}"
     },
     "openAiApiVersion": {
-      "value": "${AZURE_OPENAI_API_VERSION=2024-02-01}"
+      "value": "${AZURE_OPENAI_API_VERSION=2025-06-01}"
     },
     "chatModelName": {
-      "value": "${AZURE_OPENAI_API_MODEL=gpt-35-turbo}"
+      "value": "${AZURE_OPENAI_API_MODEL=gpt-5-mini}"
     },
     "chatModelVersion": {
-      "value": "${AZURE_OPENAI_API_MODEL_VERSION=0613}"
+      "value": "${AZURE_OPENAI_API_MODEL_VERSION=2025-08-07}"
     },
     "isContinuousDeployment": {
       "value": "${CI=false}"

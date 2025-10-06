@@ -8,7 +8,6 @@
 [![Open project in GitHub Codespaces](https://img.shields.io/badge/Codespaces-Open-blue?style=flat-square&logo=github)](https://codespaces.new/Azure-Samples/azure-openai-keyless-csharp?hide_repo_select=true&ref=main&quickstart=true)
 [![Open in Dev Containers](https://img.shields.io/static/v1?style=for-the-badge&label=Dev%20Containers&message=Open&color=blue&logo=visualstudiocode)](https://vscode.dev/redirect?url=vscode://ms-vscode-remote.remote-containers/cloneInVolume?url=https://github.com/azure-samples/azure-openai-keyless-csharp)
 
-
 :star: If you like this sample, star it on GitHub — it helps a lot!
 
 [Overview](#overview) • [Get started](#getting-started) • [Run the sample](#run-the-sample) • [Resources](#resources) • [Troubleshooting](#troubleshooting)
@@ -29,11 +28,11 @@ The quickest way is to use [GitHub Codespaces](#use-github-codespaces) that prov
 
 You need to install following tools to work on your local machine:
 
-* [.NET 8](https://dotnet.microsoft.com/downloads/)
-* [Git](https://git-scm.com/downloads)
-* [Azure Developer CLI (azd)](https://aka.ms/install-azd)
-* [VS Code](https://code.visualstudio.com/Download) or [Visual Studio](https://visualstudio.microsoft.com/downloads/)
-    * If using VS Code, install the [C# Dev Kit](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csdevkit)
+- [.NET 9](https://dotnet.microsoft.com/downloads/)
+- [Git](https://git-scm.com/downloads)
+- [Azure Developer CLI (azd)](https://aka.ms/install-azd)
+- [VS Code](https://code.visualstudio.com/Download) or [Visual Studio](https://visualstudio.microsoft.com/downloads/)
+  - If using VS Code, install the [C# Dev Kit](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csdevkit)
 
 Then you can get the project code:
 
